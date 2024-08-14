@@ -1,5 +1,5 @@
 {
-  "name": "ts-node",
+  "name": "mts-node",
   "version": "10.9.2",
   "description": "TypeScript execution environment and REPL for node.js, with source map support",
   "main": "dist/index.js",
@@ -23,6 +23,8 @@
     "./register/type-check": "./register/type-check.js",
     "./esm": "./esm.mjs",
     "./esm.mjs": "./esm.mjs",
+    "./register/esm": "./register/esm.mjs",
+    "./register/esm.mjs": "./register/esm.mjs",
     "./esm/transpile-only": "./esm/transpile-only.mjs",
     "./esm/transpile-only.mjs": "./esm/transpile-only.mjs",
     "./child-loader.mjs": "./child-loader.mjs",
