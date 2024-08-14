@@ -22,7 +22,7 @@ You can build the readme with this command:
 > I will not be accepting any Pull requests to change the architecture of the package or add new features.
 
 > [!IMPORTANT]
-> The package is published under `mts-node` name. The `m` stands for maintained. So please update all import references to `mts-node`.
+> The package is published under `ts-node-maintained` name. So please update all import references to `mts-node`.
 
 ## List of fixes over `ts-node`
 
