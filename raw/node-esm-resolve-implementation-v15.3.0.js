@@ -28,7 +28,6 @@ const { NativeModule } = require('internal/bootstrap/loaders');
 const {
   realpathSync,
   statSync,
-  Stats,
 } = require('fs');
 const { getOptionValue } = require('internal/options');
 // Do not eagerly grab .manifest, it may be in TDZ
@@ -54,6 +53,14 @@ const {
   ERR_UNSUPPORTED_ESM_URL_SCHEME,
 } = require('internal/errors').codes;
 const { Module: CJSModule } = require('internal/modules/cjs/loader');
+const fakeStats = {
+  isFile() {
+    return false
+  },
+  isDirectory() {
+    return false
+  }
+}
 
 const packageJsonReader = require('internal/modules/package_json_reader');
 const userConditions = getOptionValue('--conditions');
@@ -109,7 +116,7 @@ function tryStatSync(path) {
   try {
     return statSync(path);
   } catch {
-    return new Stats();
+    return fakeStats
   }
 }
 

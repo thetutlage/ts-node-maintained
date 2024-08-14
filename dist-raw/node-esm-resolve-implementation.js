@@ -40,6 +40,15 @@ const {
   StringPrototypeSubstr,
 } = require('./node-primordials');
 
+const fakeStats = {
+  isFile() {
+    return false
+  },
+  isDirectory() {
+    return false
+  }
+}
+
 // const internalFS = require('internal/fs/utils');
 // const { NativeModule } = require('internal/bootstrap/loaders');
 const Module = require('module')
@@ -145,7 +154,7 @@ function tryStatSync(path) {
   try {
     return statSync(path);
   } catch {
-    return new Stats();
+    return fakeStats
   }
 }
 

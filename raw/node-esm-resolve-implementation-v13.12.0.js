@@ -45,12 +45,20 @@ const {
 
 const realpathCache = new SafeMap();
 const packageJSONCache = new SafeMap();  /* string -> PackageConfig */
+const fakeStats = {
+  isFile() {
+    return false
+  },
+  isDirectory() {
+    return false
+  }
+}
 
 function tryStatSync(path) {
   try {
     return statSync(path);
   } catch {
-    return new Stats();
+    return fakeStats
   }
 }
 
