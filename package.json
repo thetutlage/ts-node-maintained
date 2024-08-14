@@ -16,6 +16,7 @@
     "./dist/bin-cwd": "./dist/bin-cwd.js",
     "./dist/bin-cwd.js": "./dist/bin-cwd.js",
     "./register": "./register/index.js",
+    "./register/esm": "./register/esm.js",
     "./register/files": "./register/files.js",
     "./register/transpile-only": "./register/transpile-only.js",
     "./register/type-check": "./register/type-check.js",
