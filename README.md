@@ -26,6 +26,7 @@ You can build the readme with this command:
 
 ## List of fixes over `ts-node`
 
+- Fix issue with extending multiple config files. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/f1c0cf64dccadde7368530e36c08b981b72bd4b7), [Opened Issue](https://github.com/TypeStrong/ts-node/issues/2000)
 - Remove deprecated usage of `new fs.Stats()`. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/a11c3fc7a6b16094f8b6a92fa17e3bba1d3c2fbe#diff-bc38947453d87342178c983abcc3ed80902450c9130e56d61be0b9650984360f), [Opened issue](https://github.com/TypeStrong/ts-node/issues/2116).
 - Export `mts-node/register/esm` path to use via the `--import` flag. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/a11c3fc7a6b16094f8b6a92fa17e3bba1d3c2fbe#diff-bc38947453d87342178c983abcc3ed80902450c9130e56d61be0b9650984360f), [Opened PR on TS-node](https://github.com/TypeStrong/ts-node/pull/2073).
 - Disable flag that converts import attributes to import assertions. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/831762f8fd4782db79843b876e9a5a197189bf57), [Related issue](https://github.com/TypeStrong/ts-node/issues/2117).
