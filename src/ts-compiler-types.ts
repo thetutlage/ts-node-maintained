@@ -92,6 +92,13 @@ export interface TSInternal {
     message: _ts.DiagnosticMessage,
     ...args: (string | number | undefined)[]
   ): _ts.Diagnostic;
+  // Added in TS 5.0
+  nodeNextJsonConfigResolver(
+    moduleName: string,
+    containingFile: string,
+    host: _ts.ModuleResolutionHost
+  ): _ts.ResolvedModuleWithFailedLookupLocations;
+  // Replaced by nodeNextJsonConfigResolver in TS 5.0
   nodeModuleNameResolver(
     moduleName: string,
     containingFile: string,
@@ -99,7 +106,6 @@ export interface TSInternal {
     host: _ts.ModuleResolutionHost,
     cache?: _ts.ModuleResolutionCache,
     redirectedReference?: _ts.ResolvedProjectReference,
-    conditionsOrIsConfigLookup?: string[] | boolean, // `conditions` parameter added in TS 5.3
     isConfigLookup?: boolean
   ): _ts.ResolvedModuleWithFailedLookupLocations;
   // Added in TS 4.7
