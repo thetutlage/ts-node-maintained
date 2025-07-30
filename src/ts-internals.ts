@@ -1,7 +1,7 @@
-import { isAbsolute, resolve } from 'path';
-import { cachedLookup, normalizeSlashes, versionGteLt } from './util';
+import {isAbsolute, resolve} from 'path';
+import {cachedLookup, normalizeSlashes, versionGteLt} from './util';
 import type * as _ts from 'typescript';
-import type { TSCommon, TSInternal } from './ts-compiler-types';
+import type {TSCommon, TSInternal} from './ts-compiler-types';
 
 /** @internal */
 export const createTsInternals = cachedLookup(createTsInternalsUncached);
@@ -55,17 +55,18 @@ function createTsInternalsUncached(_ts: TSCommon) {
       return extendedConfigPath;
     }
     // If the path isn't a rooted or relative path, resolve like a module
-    const tsGte5_3_0 = versionGteLt(ts.version, '5.3.0');
-    const resolved = ts.nodeModuleNameResolver(
-      extendedConfig,
-      combinePaths(basePath, 'tsconfig.json'),
-      { moduleResolution: ts.ModuleResolutionKind.NodeJs },
-      host,
-      /*cache*/ undefined,
-      /*projectRefs*/ undefined,
-      /*conditionsOrIsConfigLookup*/ tsGte5_3_0 ? undefined : true,
-      /*isConfigLookup*/ tsGte5_3_0 ? true : undefined
-    );
+    const tsGte5_0_0 = versionGteLt(ts.version, '5.0.0');
+    const resolved = tsGte5_0_0
+      ? ts.nodeNextJsonConfigResolver(extendedConfig, combinePaths(basePath, 'tsconfig.json'), host)
+      : ts.nodeModuleNameResolver(
+        extendedConfig,
+        combinePaths(basePath, 'tsconfig.json'),
+        { moduleResolution: ts.ModuleResolutionKind.NodeJs },
+        host,
+        /*cache*/ undefined,
+        /*projectRefs*/ undefined,
+        /*isConfigLookup*/ true,
+      );
     if (resolved.resolvedModule) {
       return resolved.resolvedModule.resolvedFileName;
     }
