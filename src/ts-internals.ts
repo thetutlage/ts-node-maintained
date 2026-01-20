@@ -1,7 +1,7 @@
-import {isAbsolute, resolve} from 'path';
-import {cachedLookup, normalizeSlashes, versionGteLt} from './util';
+import { isAbsolute, resolve } from 'path';
+import { cachedLookup, normalizeSlashes, versionGteLt } from './util';
 import type * as _ts from 'typescript';
-import type {TSCommon, TSInternal} from './ts-compiler-types';
+import type { TSCommon, TSInternal } from './ts-compiler-types';
 
 /** @internal */
 export const createTsInternals = cachedLookup(createTsInternalsUncached);
@@ -57,16 +57,20 @@ function createTsInternalsUncached(_ts: TSCommon) {
     // If the path isn't a rooted or relative path, resolve like a module
     const tsGte5_0_0 = versionGteLt(ts.version, '5.0.0');
     const resolved = tsGte5_0_0
-      ? ts.nodeNextJsonConfigResolver(extendedConfig, combinePaths(basePath, 'tsconfig.json'), host)
+      ? ts.nodeNextJsonConfigResolver(
+          extendedConfig,
+          combinePaths(basePath, 'tsconfig.json'),
+          host
+        )
       : ts.nodeModuleNameResolver(
-        extendedConfig,
-        combinePaths(basePath, 'tsconfig.json'),
-        { moduleResolution: ts.ModuleResolutionKind.NodeJs },
-        host,
-        /*cache*/ undefined,
-        /*projectRefs*/ undefined,
-        /*isConfigLookup*/ true,
-      );
+          extendedConfig,
+          combinePaths(basePath, 'tsconfig.json'),
+          { moduleResolution: ts.ModuleResolutionKind.NodeJs },
+          host,
+          /*cache*/ undefined,
+          /*projectRefs*/ undefined,
+          /*isConfigLookup*/ true
+        );
     if (resolved.resolvedModule) {
       return resolved.resolvedModule.resolvedFileName;
     }
@@ -407,7 +411,9 @@ const ts_ScriptTarget_ESNext = 99;
 const ts_ModuleKind_Node16 = 100;
 const ts_ModuleKind_NodeNext = 199;
 // https://github.com/microsoft/TypeScript/blob/fc418a2e611c88cf9afa0115ff73490b2397d311/src/compiler/utilities.ts#L8761
-export function getUseDefineForClassFields(compilerOptions: _ts.CompilerOptions): boolean {
+export function getUseDefineForClassFields(
+  compilerOptions: _ts.CompilerOptions
+): boolean {
   return compilerOptions.useDefineForClassFields === undefined
     ? getEmitScriptTarget(compilerOptions) >= ts_ScriptTarget_ES2022
     : compilerOptions.useDefineForClassFields;
@@ -420,8 +426,10 @@ export function getEmitScriptTarget(compilerOptions: {
 }): _ts.ScriptTarget {
   return (
     compilerOptions.target ??
-    ((compilerOptions.module === ts_ModuleKind_Node16 && ts_ScriptTarget_ES2022) ||
-      (compilerOptions.module === ts_ModuleKind_NodeNext && ts_ScriptTarget_ESNext) ||
+    ((compilerOptions.module === ts_ModuleKind_Node16 &&
+      ts_ScriptTarget_ES2022) ||
+      (compilerOptions.module === ts_ModuleKind_NodeNext &&
+        ts_ScriptTarget_ESNext) ||
       ts_ScriptTarget_ES5)
   );
 }
