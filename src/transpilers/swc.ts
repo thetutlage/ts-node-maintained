@@ -29,7 +29,10 @@ export function create(createOptions: SwcTranspilerOptions): Transpiler {
   let swcDepName: string = 'swc';
   if (typeof swc === 'string') {
     swcDepName = swc;
-    swcInstance = require(transpilerConfigLocalResolveHelper(swc, true)) as SwcInstance;
+    swcInstance = require(transpilerConfigLocalResolveHelper(
+      swc,
+      true
+    )) as SwcInstance;
   } else if (swc == null) {
     let swcResolved;
     try {
@@ -51,11 +54,19 @@ export function create(createOptions: SwcTranspilerOptions): Transpiler {
   }
 
   // Prepare SWC options derived from typescript compiler options
-  const { nonTsxOptions, tsxOptions } = createSwcOptions(config.options, nodeModuleEmitKind, swcInstance, swcDepName);
+  const { nonTsxOptions, tsxOptions } = createSwcOptions(
+    config.options,
+    nodeModuleEmitKind,
+    swcInstance,
+    swcDepName
+  );
 
   const transpile: Transpiler['transpile'] = (input, transpileOptions) => {
     const { fileName } = transpileOptions;
-    const swcOptions = fileName.endsWith('.tsx') || fileName.endsWith('.jsx') ? tsxOptions : nonTsxOptions;
+    const swcOptions =
+      fileName.endsWith('.tsx') || fileName.endsWith('.jsx')
+        ? tsxOptions
+        : nonTsxOptions;
     const { code, map } = swcInstance.transformSync(input, {
       ...swcOptions,
       filename: fileName,
@@ -161,7 +172,8 @@ export function createSwcOptions(
   }
   swcTarget = swcTargets[swcTargetIndex];
   const keepClassNames = target! >= /* ts.ScriptTarget.ES2016 */ 3;
-  const isNodeModuleKind = module === ModuleKind.Node16 || module === ModuleKind.NodeNext;
+  const isNodeModuleKind =
+    module === ModuleKind.Node16 || module === ModuleKind.NodeNext;
   // swc only supports these 4x module options [MUST_UPDATE_FOR_NEW_MODULEKIND]
   const moduleType =
     module === ModuleKind.CommonJS
@@ -193,8 +205,11 @@ export function createSwcOptions(
       : true;
 
   const jsxRuntime: swcTypes.ReactConfig['runtime'] =
-    jsx === JsxEmit.ReactJSX || jsx === JsxEmit.ReactJSXDev ? 'automatic' : undefined;
-  const jsxDevelopment: swcTypes.ReactConfig['development'] = jsx === JsxEmit.ReactJSXDev ? true : undefined;
+    jsx === JsxEmit.ReactJSX || jsx === JsxEmit.ReactJSXDev
+      ? 'automatic'
+      : undefined;
+  const jsxDevelopment: swcTypes.ReactConfig['development'] =
+    jsx === JsxEmit.ReactJSXDev ? true : undefined;
 
   const useDefineForClassFields = getUseDefineForClassFields(compilerOptions);
 
@@ -209,7 +224,9 @@ export function createSwcOptions(
       module: moduleType
         ? {
             type: moduleType,
-            ...(moduleType === 'amd' || moduleType === 'commonjs' || moduleType === 'umd'
+            ...(moduleType === 'amd' ||
+            moduleType === 'commonjs' ||
+            moduleType === 'umd'
               ? {
                   noInterop: !esModuleInterop,
                   strictMode,
