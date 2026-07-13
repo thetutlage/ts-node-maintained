@@ -18,8 +18,8 @@ You can build the readme with this command:
 [![Test coverage](https://codecov.io/gh/TypeStrong/ts-node/branch/main/graph/badge.svg)](https://codecov.io/gh/TypeStrong/ts-node)
 
 > [!WARNING]
-> This is a forked maintained version of `ts-node@10`. The goal is to keep this repo upto-date by fixing deal breaker and annonying issues.
-> I will not be accepting any Pull requests to change the architecture of the package or add new features.
+> This is a forked, maintained version of `ts-node@10`. The goal is to keep this repo up-to-date by fixing deal-breaker and annoying issues.
+> I will not be accepting any pull requests to change the architecture of the package or add new features.
 
 > [!IMPORTANT]
 > The package is published under `ts-node-maintained` name. So please update all import references to `mts-node`.
@@ -28,7 +28,7 @@ You can build the readme with this command:
 
 - Fix issue with extending multiple config files. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/f1c0cf64dccadde7368530e36c08b981b72bd4b7), [Opened Issue](https://github.com/TypeStrong/ts-node/issues/2000)
 - Remove deprecated usage of `new fs.Stats()`. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/a11c3fc7a6b16094f8b6a92fa17e3bba1d3c2fbe#diff-bc38947453d87342178c983abcc3ed80902450c9130e56d61be0b9650984360f), [Opened issue](https://github.com/TypeStrong/ts-node/issues/2116).
-- Export `mts-node/register/esm` path to use via the `--import` flag. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/a11c3fc7a6b16094f8b6a92fa17e3bba1d3c2fbe#diff-bc38947453d87342178c983abcc3ed80902450c9130e56d61be0b9650984360f), [Opened PR on TS-node](https://github.com/TypeStrong/ts-node/pull/2073).
+- Export `ts-node-maintained/register/esm` path to use via the `--import` flag. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/a11c3fc7a6b16094f8b6a92fa17e3bba1d3c2fbe#diff-bc38947453d87342178c983abcc3ed80902450c9130e56d61be0b9650984360f), [Opened PR on ts-node](https://github.com/TypeStrong/ts-node/pull/2073).
 - Disable flag that converts import attributes to import assertions. [Commit](https://github.com/thetutlage/ts-node-maintained/commit/831762f8fd4782db79843b876e9a5a197189bf57), [Related issue](https://github.com/TypeStrong/ts-node/issues/2117).
 - Add `process.versions.tsNodeMaintained` property to find if process is using the `register/esm` import and exactly which version.
 
